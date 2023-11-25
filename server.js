@@ -2,6 +2,7 @@ const express = require("express")
 const searchRoutes = require("./routes/search")
 const pool = require('./db/db')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 pool.query('SELECT NOW() AS current_time', (err, result) => {
   if (err) {
@@ -13,7 +14,7 @@ pool.query('SELECT NOW() AS current_time', (err, result) => {
 });
 
 const app = express();
-
+app.use(cors())
 app.use(bodyParser.json())
 
 app.use('/search', searchRoutes)
