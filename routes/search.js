@@ -4,7 +4,7 @@ const pool = require('../db/db')
 
 router.post('/', (req, res) => {
   const symptoms = "'" + req.body.symptoms.join("','") + "'"
-  const english = req.body.english
+  const english = req.body.englishOnly
   let query = `SELECT DISTINCT h.name, h.long, h.lat FROM hospital as h
   INNER JOIN doctor as d on d.hospital_id = h.id
   INNER JOIN doctor_illness as di on di.doctor_id = d.id
