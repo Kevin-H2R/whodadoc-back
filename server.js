@@ -1,5 +1,7 @@
 const express = require("express")
 const searchRoutes = require("./routes/search")
+const doctorRoutes = require("./routes/doctor")
+const hospitalRoutes = require("./routes/hospital")
 const pool = require('./db/db')
 const bodyParser = require('body-parser')
 const cors = require('cors')
@@ -9,9 +11,7 @@ app.use(cors())
 app.use(bodyParser.json())
 
 app.use('/search', searchRoutes)
-
-app.get('/', (req, res) => {
-  res.send('Successful responseeee.');
-});
+app.use('/doctors', doctorRoutes)
+app.use('/hospitals', hospitalRoutes)
 
 app.listen(3000, () => console.log('Example app is listening on port 3000.'));
