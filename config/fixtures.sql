@@ -203,3 +203,53 @@ INSERT INTO illness_symptom  (illness_id, symptom_id) VALUES
 ((SELECT id from illness where name = 'Chronic Obstructive Pulmonary Disease (COPD)'), (SELECT id from symptom WHERE name = 'Shortness of breath')),
 ((SELECT id from illness where name = 'Chronic Obstructive Pulmonary Disease (COPD)'), (SELECT id from symptom WHERE name = 'Chronic cough')),
 ((SELECT id from illness where name = 'Chronic Obstructive Pulmonary Disease (COPD)'), (SELECT id from symptom WHERE name = 'Excessive mucus production'));
+
+INSERT INTO hospital (name, lat, long, hour_start, hour_end, profile_image, address) VALUES 
+('Gangnam hospital', 37.517235, 127.047325, '08:00', '18:00', 'https://picsum.photos/200', 'Seoul, gangmam, lol'),
+('Hongdae hospital', 37.5519, 126.9918, '08:00', '18:00', 'https://picsum.photos/200', 'Seoul, hongdae, yes'),
+('Sindorim hospital', 37.5100, 126.8822, '09:30', '21:00', 'https://picsum.photos/200', 'Seoul, sindorim, yes'),
+('Nowon hospital', 37.6525, 127.0750, '09:00', '20:00', 'https://picsum.photos/200', 'Seoul, nowon, yes'),
+('Itaewon hospital', 37.5385, 126.9925, '08:00', '18:00', 'https://picsum.photos/200', 'Seoul, itaewon, yes'),
+('Yongsan hospital', 37.5314, 126.9799, '08:00', '18:00', 'https://picsum.photos/200', 'Seoul, yongsan, yes'),
+('Yeouido hospital', 37.5259, 126.9269, '08:00', '18:00', 'https://picsum.photos/200', 'Seoul, yeouido, yes');
+
+INSERT INTO doctor (firstname, lastname, english, hospital_id) VALUES
+('Michelle', 'Kim', true, (SELECT id from hospital where name = 'Gangnam hospital')),
+('Elizabeth', 'Renderos', true, (SELECT id from hospital where name = 'Hongdae hospital')),
+('Suzie', 'Choi', true, (SELECT id from hospital where name = 'Sindorim hospital')),
+('Sarah', 'Kim', true, (SELECT id from hospital where name = 'Nowon hospital')),
+('Michael', 'Scott', false, (SELECT id from hospital where name = 'Itaewon hospital')),
+('Dwight', 'Schrute', false, (SELECT id from hospital where name = 'Yongsan hospital')),
+('Jim', 'Halpert', true, (SELECT id from hospital where name = 'Yeouido hospital')),
+('Pam', 'Beasley', true, (SELECT id from hospital where name = 'Gangnam hospital')),
+('Creed', 'Barington', false, (SELECT id from hospital where name = 'Hongdae hospital')),
+('Stanley', 'Hudson', true, (SELECT id from hospital where name = 'Sindorim hospital'));
+
+INSERT INTO doctor_illness (doctor_id, illness_id) VALUES
+((SELECT id from doctor where firstname = 'Michelle'), (SELECT id from illness WHERE name = 'Influenza (Flu)')),
+((SELECT id from doctor where firstname = 'Michelle'), (SELECT id from illness WHERE name = 'Pneumonia')),
+((SELECT id from doctor where firstname = 'Michelle'), (SELECT id from illness WHERE name = 'Heart Attack')),
+((SELECT id from doctor where firstname = 'Michelle'), (SELECT id from illness WHERE name = 'Migraine')),
+((SELECT id from doctor where firstname = 'Elizabeth'), (SELECT id from illness WHERE name = 'Influenza (Flu)')),
+((SELECT id from doctor where firstname = 'Elizabeth'), (SELECT id from illness WHERE name = 'Urinary Tract Infection (UTI)')),
+((SELECT id from doctor where firstname = 'Suzie'), (SELECT id from illness WHERE name = 'Influenza (Flu)')),
+((SELECT id from doctor where firstname = 'Suzie'), (SELECT id from illness WHERE name = 'Gastroenteritis')),
+((SELECT id from doctor where firstname = 'Suzie'), (SELECT id from illness WHERE name = 'Asthma')),
+((SELECT id from doctor where firstname = 'Sarah'), (SELECT id from illness WHERE name = 'Pneumonia')),
+((SELECT id from doctor where firstname = 'Sarah'), (SELECT id from illness WHERE name = 'Gastroenteritis')),
+((SELECT id from doctor where firstname = 'Michael'), (SELECT id from illness WHERE name = 'Pneumonia')),
+((SELECT id from doctor where firstname = 'Michael'), (SELECT id from illness WHERE name = 'Kidney Stones')),
+((SELECT id from doctor where firstname = 'Michael'), (SELECT id from illness WHERE name = 'Diabetes')),
+((SELECT id from doctor where firstname = 'Dwight'), (SELECT id from illness WHERE name = 'Pneumonia')),
+((SELECT id from doctor where firstname = 'Dwight'), (SELECT id from illness WHERE name = 'Kidney Stones')),
+((SELECT id from doctor where firstname = 'Dwight'), (SELECT id from illness WHERE name = 'Appendicitis')),
+((SELECT id from doctor where firstname = 'Dwight'), (SELECT id from illness WHERE name = 'Diabetes')),
+((SELECT id from doctor where firstname = 'Jim'), (SELECT id from illness WHERE name = 'Heart Attack')),
+((SELECT id from doctor where firstname = 'Jim'), (SELECT id from illness WHERE name = 'Kidney Stones')),
+((SELECT id from doctor where firstname = 'Pam'), (SELECT id from illness WHERE name = 'Heart Attack')),
+((SELECT id from doctor where firstname = 'Pam'), (SELECT id from illness WHERE name = 'Appendicitis')),
+((SELECT id from doctor where firstname = 'Creed'), (SELECT id from illness WHERE name = 'Influenza (Flu)')),
+((SELECT id from doctor where firstname = 'Creed'), (SELECT id from illness WHERE name = 'Asthma')),
+((SELECT id from doctor where firstname = 'Stanley'), (SELECT id from illness WHERE name = 'Appendicitis')),
+((SELECT id from doctor where firstname = 'Stanley'), (SELECT id from illness WHERE name = 'Urinary Tract Infection (UTI)')),
+((SELECT id from doctor where firstname = 'Stanley'), (SELECT id from illness WHERE name = 'Chronic Obstructive Pulmonary Disease (COPD)'));
