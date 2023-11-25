@@ -2,7 +2,6 @@ const express = require("express")
 const searchRoutes = require("./routes/search")
 const doctorRoutes = require("./routes/doctor")
 const hospitalRoutes = require("./routes/hospital")
-const pool = require('./db/db')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
