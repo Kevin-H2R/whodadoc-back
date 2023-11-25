@@ -5,13 +5,13 @@ const pool = require('../db/db')
 router.post('/', (req, res) => {
   const symptoms = "'" + req.body.symptoms.join("','") + "'"
   const english = req.body.englishOnly
-  let query = `SELECT DISTINCT h.name, h.long, h.lat FROM hospital as h
+  let query = `SELECT h.name, h.long, h.lat, COUNT(DISTINCT s.id) as matched_symptom_count FROM hospital as h
   INNER JOIN doctor as d on d.hospital_id = h.id
   INNER JOIN doctor_illness as di on di.doctor_id = d.id
   INNER JOIN illness as i on i.id = di.illness_id
   INNER JOIN illness_symptom as ils on ils.illness_id = i.id
   INNER JOIN symptom s on ils.symptom_id = s.id
-  WHERE s.name IN (${symptoms})`
+  WHERE s.name IN (${symptoms}) GROUP BY h.id ORDER BY matched_symptom_count DESC`
 
   if (english) {
     query += " AND d.english = true"
