@@ -3,7 +3,6 @@ const router = express.Router()
 const pool = require('../db/db')
 
 router.get('/:id', (req, res) => {
-  console.log(req.params.id)
   const docId = req.params.id
   const query = `SELECT d.*, string_agg(i.name, ', ') as illnesses FROM doctor as d
     INNER JOIN doctor_illness di on di.doctor_id = d.id

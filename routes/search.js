@@ -54,9 +54,20 @@ const aiComputing = (req, res) => {
       Start the symptoms list with the word 'whodadoc', then give the symptoms separated by a comma if necessary. `}
     })
     const answer = response.data.result.choices[0].text
-    console.log(answer)
+    if (!answer) {
+      res.status(400).send("Error")
+      return
+    }
     const symptomsStr = answer.split('whodadoc')[1]
+    if (!symptomsStr) {
+      res.status(400).send("Error")
+      return
+    }
     const symptoms = symptomsStr.split(',')
+    if (!symptoms) {
+      res.status(400).send("Error")
+      return
+    }
     const likelySymptoms = []
     symptoms.forEach(s => {
       if (s.trim().length < 3) return
@@ -71,7 +82,6 @@ const aiComputing = (req, res) => {
         })
       })
     })
-    console.log(likelySymptoms)
     const formattedLikelySymptoms = "'" + likelySymptoms.join("','") + "'"
     const queryHospitals = makeQueryForSymptoms(formattedLikelySymptoms, req.body.englishOnly)
     pool.query(queryHospitals, (err, result) => {

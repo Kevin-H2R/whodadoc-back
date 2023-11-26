@@ -104,6 +104,7 @@ INSERT INTO symptom (name) VALUES
 ('Itchy or watery eyes'),
 ('Dark yellow urine'),
 ('Intense headache'),
+('Headache'),
 ('Nausea'),
 ('Dry mouth and skin');
 
@@ -193,6 +194,7 @@ INSERT INTO illness_symptom  (illness_id, symptom_id) VALUES
 ((SELECT id from illness where name = 'Diabetes'), (SELECT id from symptom WHERE name = 'Fatigue')),
 
 ((SELECT id from illness where name = 'Migraine'), (SELECT id from symptom WHERE name = 'Intense headache')),
+((SELECT id from illness where name = 'Migraine'), (SELECT id from symptom WHERE name = 'Headache')),
 ((SELECT id from illness where name = 'Migraine'), (SELECT id from symptom WHERE name = 'Nausea')),
 ((SELECT id from illness where name = 'Migraine'), (SELECT id from symptom WHERE name = 'Sensitivity to light or sound')),
 
